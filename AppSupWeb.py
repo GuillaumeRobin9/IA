@@ -27,3 +27,7 @@ def knn_accident(accident_info, csv_file):
 
 json_result = knn_accident(json.loads(sys.argv[1]), sys.argv[2])
 print(json_result)
+
+#export du resultat json_result dans un fichier json
+with open('json/result_sup.json', 'w') as outfile:
+    json.dump(json_result, outfile)

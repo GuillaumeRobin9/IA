@@ -28,3 +28,8 @@ def high_level_classification(accident_info, classification_method, trained_mode
 
 json_result = high_level_classification(json.loads(sys.argv[1]), sys.argv[2], sys.argv[3])
 print(json_result)
+
+
+#export du resultat json_result dans un fichier json
+with open('json/result_clf.json', 'w') as outfile:
+    json.dump(json_result, outfile)

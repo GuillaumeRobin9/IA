@@ -25,3 +25,7 @@ def k_means_accident(latitude, longitude, centroids):
 
 json_result = k_means_accident(float(sys.argv[1]), float(sys.argv[2]), json.loads(sys.argv[3]))
 print(json_result)
+
+#export du resultat json_result dans un fichier json
+with open('json/result_nonSup.json', 'w') as outfile:
+    json.dump(json_result, outfile)
