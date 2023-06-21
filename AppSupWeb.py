@@ -6,8 +6,8 @@ import sys
 def knn_accident(accident_info, csv_file):
     # Chargement des données d'entraînement depuis le fichier CSV
     accidents = pd.read_csv(csv_file)
-    X = accidents.drop('gravite', axis=1)
-    y = accidents['gravite']
+    X = accidents.drop('descr_grav', axis=1)
+    y = accidents['descr_grav']
     
     # Initialisation du modèle KNN
     knn = KNeighborsClassifier()
