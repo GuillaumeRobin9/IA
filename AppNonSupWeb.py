@@ -11,7 +11,7 @@ import numpy as np
 def cluster_accident(latitude, longitude, centroids):
 
     #Initialisation du modèle KMeans
-    kmeans = KMeans(n_clusters=len(centroids), random_state=0, init=centroids)
+    kmeans = KMeans(n_clusters=len(centroids), random_state=0, init=centroids, n_init=1)
     #Entrainement du modèle
     kmeans.fit(centroids)
     #Prédiction du cluster de l'accident
