@@ -1,32 +1,26 @@
+#Creation d'une fonction qui prend en entree latitude, longitude et les différents centroids des clusters et qui retourne le cluster auquel appartient l'accident
+#Le script vérifie auprès de quel cluster l'accident est le plus proche et retourne le numéro du cluster
+#Le script retourne un fichier json contenant le numéro du cluster
+#Le script est appelé par le script AppNonSupWeb.py
+
 import json
 from sklearn.cluster import KMeans
 import sys
+import numpy as np
 
-def k_means_accident(latitude, longitude, centroids):
-    # Création des données d'entrée
-    accident_data = [[latitude, longitude]]
+def cluster_accident(latitude, longitude, centroids):
 
-    # Initialisation du modèle k-means
-    cluster_results = []
-    for centroid in centroids:
-        kmeans = KMeans(n_clusters=1, init=[centroid], n_init=1)
-    
-        # Entraînement du modèle sur les données d'entrée
-        kmeans.fit(accident_data)
-    
-        # Prédiction du cluster d'appartenance de l'accident
-        cluster = kmeans.predict(accident_data)[0]
-        cluster_results.append(int(cluster))
-    
-    # Conversion du résultat en format JSON
-    results = {'clusters': cluster_results}
-    json_result = json.dumps(results)
+    #Initialisation du modèle KMeans
+    kmeans = KMeans(n_clusters=len(centroids), random_state=0, init=centroids)
+    #Entrainement du modèle
+    kmeans.fit(centroids)
+    #Prédiction du cluster de l'accident
+    cluster = kmeans.predict([[latitude, longitude]])
+    #Conversion du résultat en format JSON
+    result = {'cluster': int(cluster[0])}
+    json_result = json.dumps(result)
     
     return json_result
 
-json_result = k_means_accident(float(sys.argv[1]), float(sys.argv[2]), json.loads(sys.argv[3]))
+json_result = cluster_accident(float(sys.argv[1]), float(sys.argv[2]), np.array(json.loads(sys.argv[3])))
 print(json_result)
-
-# Export du résultat json_result dans un fichier json
-with open('json/result_nonSup.json', 'w') as outfile:
-    outfile.write(json_result)
