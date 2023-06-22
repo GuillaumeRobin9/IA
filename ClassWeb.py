@@ -21,7 +21,7 @@ def high_level_classification(accident_info, classification_method, trained_mode
     gravite = model.predict([accident_info])[0]
     
     # Conversion du résultat en format JSON
-    result = {'gravite': gravite}
+    result = {'gravite': int(gravite)}
     json_result = json.dumps(result)
     
     return json_result
