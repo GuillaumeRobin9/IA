@@ -5,8 +5,13 @@ from sklearn.neighbors import KNeighborsClassifier
 import numpy as np
 
 def knn_gravite(accident_info, csv_file):
+    # Lecture du fichier CSV
     df = pd.read_csv(csv_file, sep=';')
+
+    # Création du modèle KNN
     knn = KNeighborsClassifier(n_neighbors=5)
+
+    # Entrainement du modèle
     knn.fit(df.drop('descr_grav', axis=1), df['descr_grav'])
     
     # Extraction des valeurs du dictionnaire et conversion en nombres réels
@@ -27,7 +32,10 @@ def knn_gravite(accident_info, csv_file):
         accident_info['descr_type_col']
     ]
     
+    # Prédiction de la gravité de l'accident
     gravite = knn.predict(np.array([accident_info_values]).reshape(1, -1))[0]
+
+    # Conversion du résultat en format JSON
     result = {'gravite': int(gravite)}
     json_result = json.dumps(result)
     
@@ -37,5 +45,6 @@ accident_info = json.loads(sys.argv[1])[0]  # Accéder au premier élément de l
 json_result = knn_gravite(accident_info, sys.argv[2])
 print(json_result)
 
-with open('json/result_non_sup.json', 'w') as outfile:
+#export du resultat json_result dans un fichier json
+with open('json/result_sup.json', 'w') as outfile:
     json.dump(json_result, outfile)
