@@ -24,3 +24,12 @@ def cluster_accident(latitude, longitude, centroids):
 
 json_result = cluster_accident(float(sys.argv[1]), float(sys.argv[2]), np.array(json.loads(sys.argv[3])))
 print(json_result)
+
+
+#booleen pour choisir si on veut exporter le resultat dans un fichier json ou non
+export = False
+
+if export == True:
+    #export du resultat json_result dans un fichier json
+    with open('json/result_non_sup.json', 'w') as outfile:
+        json.dump(json_result, outfile)

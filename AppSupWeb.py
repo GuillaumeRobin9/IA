@@ -45,6 +45,10 @@ accident_info = json.loads(sys.argv[1])[0]  # Accéder au premier élément de l
 json_result = knn_gravite(accident_info, sys.argv[2])
 print(json_result)
 
-#export du resultat json_result dans un fichier json
-with open('json/result_sup.json', 'w') as outfile:
-    json.dump(json_result, outfile)
+#booleen pour choisir si on veut exporter le resultat dans un fichier json ou non
+export = False
+
+if export == True:
+    #export du resultat json_result dans un fichier json
+    with open('json/result_sup.json', 'w') as outfile:
+        json.dump(json_result, outfile)
