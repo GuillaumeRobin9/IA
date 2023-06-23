@@ -18,13 +18,13 @@ def high_level_classification(accident_info, classification_method, trained_mode
 
     # Extraction des valeurs du dictionnaire et conversion en nombres réels
     accident_info_values = [
+        accident_info['age'],
         accident_info['latitude'],
         accident_info['longitude'],
-        accident_info['descr_cat_veh'],
         accident_info['descr_athmo'],
+        accident_info['descr_cat_veh'],
         accident_info['descr_lum'],
-        accident_info['descr_etat_surf'],
-        accident_info['age']
+        accident_info['descr_etat_surf']
     ]
     
     # Prédiction de la gravité de l'accident
