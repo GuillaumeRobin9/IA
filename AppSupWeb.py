@@ -41,10 +41,20 @@ def knn_gravite(accident_info, csv_file):
     
     return json_result
 
+#-----------------------------------------------------MISE EN PLACE DES ARGUMENTS-----------------------------------------------------#
+#accident_info au format [{"premiere_cle": valeur, "deuxieme_cle": valeur, ...}"}] avec les memes infos qu'une ligne du csv sans descr_grav
+#on prend uniquement les colonnes date, latitude, longitude, descr_cat_veh, descr_agglo, descr_athmo, descr_lum, descr_etat_surf, description_intersection, age, place, descr_dispo_secu, descr_motif_traj, descr_type_col
+#csv_file au format "data/nom_du_fichier.csv"
+#-------------------------------------------------------------------------------------------------------------------------------------#
+
 accident_info = json.loads(sys.argv[1])[0]  # Accéder au premier élément de la liste
 json_result = knn_gravite(accident_info, sys.argv[2])
 print(json_result)
 
-#export du resultat json_result dans un fichier json
-with open('json/result_sup.json', 'w') as outfile:
-    json.dump(json_result, outfile)
+#booleen pour choisir si on veut exporter le resultat dans un fichier json ou non
+export = False
+
+if export == True:
+    #export du resultat json_result dans un fichier json
+    with open('json/result_sup.json', 'w') as outfile:
+        json.dump(json_result, outfile)
