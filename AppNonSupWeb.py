@@ -22,6 +22,13 @@ def cluster_accident(latitude, longitude, centroids):
     
     return json_result
 
+
+#-----------------------------------------------------MISE EN PLACE DES ARGUMENTS-----------------------------------------------------#
+#latitude au format float
+#longitude au format float
+#centroids au format [[latitude, longitude], [latitude, longitude], ...]
+#-------------------------------------------------------------------------------------------------------------------------------------#
+
 json_result = cluster_accident(float(sys.argv[1]), float(sys.argv[2]), np.array(json.loads(sys.argv[3])))
 print(json_result)
 

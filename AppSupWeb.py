@@ -41,6 +41,11 @@ def knn_gravite(accident_info, csv_file):
     
     return json_result
 
+#-----------------------------------------------------MISE EN PLACE DES ARGUMENTS-----------------------------------------------------#
+#accident_info au format [{"premiere_cle": valeur, "deuxieme_cle": valeur, ...}"}] avec les memes infos qu'une ligne du csv sans descr_grav
+#csv_file au format "data/nom_du_fichier.csv"
+#-------------------------------------------------------------------------------------------------------------------------------------#
+
 accident_info = json.loads(sys.argv[1])[0]  # Accéder au premier élément de la liste
 json_result = knn_gravite(accident_info, sys.argv[2])
 print(json_result)

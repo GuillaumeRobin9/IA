@@ -26,6 +26,13 @@ def high_level_classification(accident_info, classification_method, trained_mode
     
     return json_result
 
+
+#-----------------------------------------------------MISE EN PLACE DES ARGUMENTS-----------------------------------------------------#
+#accident_info au format [{"premiere_cle": valeur, "deuxieme_cle": valeur, ...}"}] avec les memes infos qu'une ligne du csv sans descr_grav
+#classification_method au format "SVM", "RF" ou "MLP"
+#trained_model au format "models/nom_du_fichier.pkl"
+#-------------------------------------------------------------------------------------------------------------------------------------#
+
 accident_info = json.loads(sys.argv[1])[0]
 json_result = high_level_classification(accident_info, sys.argv[2], sys.argv[3])
 print(json_result)
