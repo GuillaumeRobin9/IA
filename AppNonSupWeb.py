@@ -29,7 +29,12 @@ def cluster_accident(latitude, longitude, centroids):
 #centroids au format [[latitude, longitude], [latitude, longitude], ...]
 #-------------------------------------------------------------------------------------------------------------------------------------#
 
-json_result = cluster_accident(float(sys.argv[1]), float(sys.argv[2]), np.array(json.loads(sys.argv[3])))
+#chargement du json contenant les centroids json/centroids.json
+with open(sys.argv[3]) as json_file:
+    centroids = json.load(json_file)
+
+# print(centroids)
+json_result = cluster_accident(float(sys.argv[1]), float(sys.argv[2]), np.array(centroids))
 print(json_result)
 
 
